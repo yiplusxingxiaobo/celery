@@ -1,9 +1,14 @@
 celery 和 分布式整合
 celery -A tasks worker -l info -n worker.%h -Q for_task_A
-启动一个worker专门执行 for_task_A队列中的消息任务
+启动一个worker专门执行 for_task_A队列中的消息任务 -Q 指定相关的队列
 
 
 celery -A tasks worker -l info -n worker.%h -Q for_task_B
 启动一个worker专门执行 for_task_B队列中的消息任务
 
 ？？？为啥在不指定路由策略时 相关的task就无法执行
+
+
+
+如果某个task没有执行相关的Q 在执行add任务的时候 任务会没人添加到Celery默认的celery的队列中
+celery -A tasks worker -l info -n worker.%h -Q celery
