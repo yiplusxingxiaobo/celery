@@ -1,0 +1,9 @@
+celery 和 分布式整合
+celery -A tasks worker -l info -n worker.%h -Q for_task_A
+启动一个worker专门执行 for_task_A队列中的消息任务
+
+
+celery -A tasks worker -l info -n worker.%h -Q for_task_B
+启动一个worker专门执行 for_task_B队列中的消息任务
+
+？？？为啥在不指定路由策略时 相关的task就无法执行
